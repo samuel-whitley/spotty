@@ -23,6 +23,9 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'rspotify'
+
+gem 'devise'
 
 
 # Use ActiveModel has_secure_password
@@ -39,6 +42,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
+  gem 'sqlite3'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
@@ -46,6 +50,14 @@ group :development, :test do
   gem 'spring'
 end
 
-gem 'rspotify'
+group :production do
 
-gem 'devise'
+	gem 'pg'
+
+  gem 'rack-cors'
+
+  gem 'rails_12factor'
+
+end
+
+ruby '2.1.5'
