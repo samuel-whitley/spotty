@@ -6,9 +6,13 @@ class UsersController < ApplicationController
 	end
 
 	def index
-    @users = User.all
-    render :index
-	end
+    if current_user != nil
+      @users = User.all
+      render :index
+    else
+      redirect_to new_user_session_path
+	  end
+  end
 
 	private
 
