@@ -5,5 +5,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   
   belongs_to :join_votes       
-  has_many :songs through: :join_votes
+  has_many :songs, through: :join_votes
 end

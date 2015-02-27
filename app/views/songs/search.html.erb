@@ -1,0 +1,15 @@
+
+<%= form_tag("/songs", method: "get") do %>
+  <%= label_tag(:q, "Search for:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+<%@tracks.each do |track| %>
+
+<div>
+<%=track.artists.first.name%> | <%=track.album.name%> | <%=track.id%>
+<%=button_to%>
+</div>
+
+<%end%>
