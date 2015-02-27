@@ -2,8 +2,12 @@ class SongsController < ApplicationController
 
 
   def search()
+    if params[:q]
     @tracks=RSpotify::Track.search(params[:q])
     render :search
+    else
+    render :search
+    end
    binding.pry
   end
 
@@ -15,6 +19,6 @@ class SongsController < ApplicationController
 
   def add
     binding.pry
-    @song =Song.new
+    RSpotify::Track
   end
 end

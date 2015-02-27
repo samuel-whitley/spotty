@@ -4,12 +4,14 @@
   <%= text_field_tag(:q) %>
   <%= submit_tag("Search") %>
 <% end %>
+<%if @tracks%>
 
-<%@tracks.each do |track| %>
-
+<% @tracks.each do |track| %>
 <div>
 <%=track.artists.first.name%> | <%=track.album.name%> | <%=track.id%>
-<%=button_to%>
-</div>
 
+<%=button_to('add', songs_path(:song => 
+{:spotify_id=> track.id, :artist=>track.artists.first.name, :album => track.album.name, :name => track.name}), method: :post)%>
+</div>
+<%end%>
 <%end%>
