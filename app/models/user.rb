@@ -4,6 +4,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   
-  belongs_to :join_votes       
-  has_many :songs through: :join_votes
+  #belongs_to :join_votes       
+  #has_many :songs through: :join_votes
 end

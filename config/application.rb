@@ -6,6 +6,8 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+RSpotify::authenticate("c9e0833972d342418492ffef056065b9", "58ec8085be6c4546931bbad17104ee15")
+
 module Spotty
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

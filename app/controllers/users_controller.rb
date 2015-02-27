@@ -14,6 +14,16 @@ class UsersController < ApplicationController
 	  end
   end
 
+  def spotify
+    binding.pry
+    spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
+
+    if spotify_user
+      redirect_to users_show_path
+    end
+  end
+
+
 	private
 
 		def as_json(opts={})
