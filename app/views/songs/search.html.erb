@@ -11,7 +11,7 @@
 <%=track.artists.first.name%> | <%=track.album.name%> | <%=track.id%>
 
 <%=button_to('add', songs_path(:song => 
-{:spotify_id=> track.id, :artist=>track.artists.first.name, :album => track.album.name, :name => track.name}), method: :post)%>
+{:spotify_id=> track.id, :artist=>track.artists.first.name, :album => track.album.name, :title => track.name}), method: :post)%>
 </div>
 <%end%>
 <%end%>
