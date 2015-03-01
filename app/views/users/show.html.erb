@@ -5,10 +5,12 @@
 
 <p> Username: <%= @user.email %> </p>
 
+<h3> Your Votes </h3>
 <% if @user.join_votes %>
 <ul>
   <% @user.join_votes.each do |g| %>
-    <li><%= link_to "Song #{song.id}", song_path(g) %></li>
+    <% song = Song.find(g.song_id.to_i) %>
+    <li><%= song.title %> <%= song.artist %></li>
   <% end %>
 </ul>
 <% else %>
