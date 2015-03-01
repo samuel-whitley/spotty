@@ -1,15 +1,37 @@
 class SongsController < ApplicationController
 
 
-  def search(params={})
-    # I'll need to do a little bit more reading into Rspotify's docs, to know how to display the list of songs that a person has searched for,
-    # we're going to need to know how Rspotify is going to send them back to us. If they're sending back in json (which is what I'm assuming),
-    # we'll have to know how everything is supposed to be parsed. Then, in the view, we'll have to have a button that appears next to each song
-    # to add that song to the list of suggested songs (AKA to save it in the database)
+  def search()
+    if params[:q]
+      @tracks=RSpotify::Track.search(params[:q])
+      render :search
+    else
+      render :search
+    end
+   #binding.pry
   end
 
   def index
-    @songs = Song.all?
+    @songs = Song.all
     render :index
+  end
+
+
+
+  def add
+    #binding.pry
+    song_info = params[:song]
+    song_title = song_info[:title]
+    song_artist = song_info[:artist]
+    song_spotify_id = song_info[:spotify_id]
+    Song.create(:title => song_title, :artist => song_artist, :spotify_id => song_spotify_id)
+
+    redirect_to songs_path
+  end
+
+  private
+
+  def song_params(opts={})
+    params.require(:song).permit(:title, :artist, :spotify_id)
   end
 end
