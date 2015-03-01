@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/songs/index', to: 'songs#index', as: 'songs_index'
   post '/vote', to: 'users#vote', as: 'vote'
   get '/users/:id', to: 'users#show', as: 'users_show'
+  get '/users', to: 'users#index', as: 'users_index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

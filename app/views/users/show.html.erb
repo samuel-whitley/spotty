@@ -3,10 +3,16 @@
 <h1> Profile Menu </h1>
 <br>
 
+  <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %> | <%= link_to "Users Index", users_index_path %> | <%= link_to 'Search for Songs', search_path %> | <%= link_to "This Week's Suggestions", songs_index_path %>
+  <br> <br>
+
+  ---------------------------------
+
+
 <p> Username: <%= @user.email %> </p>
 
 <h3> Your Votes </h3>
-<% if @user.join_votes %>
+<% if @user.join_votes.count > 0 %>
 <ul>
   <% @user.join_votes.each do |g| %>
     <% song = Song.find(g.song_id.to_i) %>
@@ -19,5 +25,7 @@
 
  ------------------------------------
 <br>
+
+
 
 

@@ -2,10 +2,10 @@
 
 
 <P id="notice"><% notice %></p>
- <h1> Spotify! </h1>
-  <p> Below is a list of users that can vote on hte weekly playlist</p>
+ <h1> Get Spotty With It! </h1>
+  <p> Below is a list of users that can vote on the weekly playlist</p>
   <br>
-  <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %> | <%= link_to 'Go to Your Home Page', users_show_path(current_user) %>
+  <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %> | <%= link_to 'Go to Your Home Page', users_show_path(current_user) %> | <%= link_to 'Search for Songs', search_path %> | <%= link_to "This Week's Suggestions", songs_index_path %>
   <br>
   <br>
   -----------------------------------------------------------------------------
