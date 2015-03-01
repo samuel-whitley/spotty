@@ -25,9 +25,14 @@ class SongsController < ApplicationController
     song_artist = song_info[:artist]
     song_album = song_info[:album]
     song_spotify_id = song_info[:spotify_id]
-    Song.create(:title => song_title, :artist => song_artist, :spotify_id => song_spotify_id)
-
-    redirect_to songs_path
+    if Song.find_by spotify_id: song_spotify_id
+      flash[:notice] = "That song has already been added to the list!"
+      redirect_to songs_path
+    else
+      Song.create(:title => song_title, :artist => song_artist, :spotify_id => song_spotify_id)
+      flash[:notice] = "Your song has been added to the list of suggestions!"
+      redirect_to songs_index_path
+    end
   end
 
   private

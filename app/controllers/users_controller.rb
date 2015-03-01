@@ -15,8 +15,9 @@ class UsersController < ApplicationController
   end
 
   def vote
-    if current_user.vote_count > 0
-      current_user.vote_count -= 1
+    @song = Song.find(vote_params[:song_id].to_i)
+    if current_user.votes > 0 && !current_user.songs.include?(@song)
+      current_user.votes -= 1
       current_user.save
       @song = Song.find(vote_params[:song_id].to_i)
       @song.votes += 1
@@ -24,10 +25,13 @@ class UsersController < ApplicationController
       @vote = JoinVote.new(vote_params)
       @vote.save
       flash[:notice]="Your vote has been added"
-      redirect_to songs_path
-    else
-      flash[:alert]="You don't have any votes left this week!"
-      redirect_to songs_path
+      redirect_to songs_index_path
+    elsif current_user.songs.include?(@song)
+      flash[:alert]="You've already voted for this song!"
+      redirect_to songs_index_path
+    elsif current_user.votes = 0
+      flash[:alert]="You've used your votes for the week!"
+      redirect_to songs_index_path
     end
   end
 

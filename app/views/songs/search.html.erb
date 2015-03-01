@@ -10,7 +10,7 @@
 
 <% @tracks.each do |track| %>
 <div>
-<%=track.artists.first.name%> | <%=track.album.name%> | <%=track.id%>
+Song Name: <%= track.name %> | Artist: <%=track.artists.first.name%> | Album: <%=track.album.name%> | <%=track.id%>
 
 <%=button_to('Add', songs_path(:song => 
 {:spotify_id=> track.id, :artist=>track.artists.first.name, :album => track.album.name, :title => track.name, :album => track.album}), method: :post)%>
