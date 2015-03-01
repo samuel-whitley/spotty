@@ -23,6 +23,7 @@ class SongsController < ApplicationController
     song_info = params[:song]
     song_title = song_info[:title]
     song_artist = song_info[:artist]
+    song_album = song_info[:album]
     song_spotify_id = song_info[:spotify_id]
     Song.create(:title => song_title, :artist => song_artist, :spotify_id => song_spotify_id)
 
@@ -32,6 +33,6 @@ class SongsController < ApplicationController
   private
 
   def song_params(opts={})
-    params.require(:song).permit(:title, :artist, :spotify_id)
+    params.require(:song).permit(:title, :artist, :album, :spotify_id)
   end
 end
