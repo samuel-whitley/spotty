@@ -1,1 +1,20 @@
-<h1>hello</h1>
+<p id="notice"><% notice %></p>
+ <h1> Suggested Songs! </h1>
+  <p> Below is a list of songs that have been suggested this week!</p>
+  <br>
+  <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %> | <%= link_to 'Go to Your Home Page', users_show_path(current_user) %> | <%= link_to 'Search', search_path %>
+  <br>
+  <br>
+  -----------------------------------------------------------------------------
+  <br>
+
+  <ul>
+      <% @songs.each do |song| %>
+      <li><div>Title: <%= song.title %></div> <div>Artist: <%= song.artist %> </div> <div> Votes: <%= song.votes %> <div> <%= button_to("Vote",
+                                                                          vote_path(:join_vote => 
+                                                                          {:song_id => song.id, :user_id => current_user.id}),
+                                                                           method: :post)%> </div></li>
+      <%end%>
+  </ul>
+
+-------------------------------------------------------------------------------

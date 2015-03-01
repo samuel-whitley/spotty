@@ -1,4 +1,6 @@
 
+
+<%= link_to 'Go to Your Home Page', users_show_path(current_user) %> | <%= link_to "Songs Index", songs_index_path %>
 <%= form_tag("/songs", method: "get") do %>
   <%= label_tag(:q, "Search for:") %>
   <%= text_field_tag(:q) %>
@@ -10,7 +12,7 @@
 <div>
 <%=track.artists.first.name%> | <%=track.album.name%> | <%=track.id%>
 
-<%=button_to('add', songs_path(:song => 
+<%=button_to('Add', songs_path(:song => 
 {:spotify_id=> track.id, :artist=>track.artists.first.name, :album => track.album.name, :title => track.name}), method: :post)%>
 </div>
 <%end%>

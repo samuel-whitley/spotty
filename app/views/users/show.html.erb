@@ -5,14 +5,17 @@
 
 <p> Username: <%= @user.email %> </p>
 
+<% if @user.join_votes %>
 <ul>
-  <% @user.songs.each do |g| %>
+  <% @user.join_votes.each do |g| %>
     <li><%= link_to "Song #{song.id}", song_path(g) %></li>
   <% end %>
 </ul>
+<% else %>
+  <div>"You haven't voted for any songs!"</div>
+<% end %>
 
  ------------------------------------
 <br>
-<%= link_to 'Join or Create Game', games_join_path, method: :post %> |
 
 

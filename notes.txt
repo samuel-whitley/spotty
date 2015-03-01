@@ -1,0 +1,91 @@
+
+*********USERS CONTROLLER**********
+
+
+
+def token?
+  if access-token && !expired?
+end
+
+def expired?
+  DateTime.now > token_expiration
+end
+
+
+token_expiration = DateTime.now + 1.hour
+
+
+You need to set up a route for getting a new access token
+
+
+
+if no token
+specify client_id, response_type, redirect_uri
+
+
+Steps
+
+1. We see that the user needs a token
+2. Send user to spotify with a redirect URI
+3. If everything went well, we now have params[:code]
+4. Make another post request to spotify with the :code we just got, requesting an authentication token 
+
+
+We have to send something in the header? I don't even remember how that works. 
+
+
+****************  What needs to go in the Users model versus what needs to go in the users controller?!
+
+def get_token!(auth_code)
+  token_opts = {
+    client_id => ENV["CLIENT_ID"]
+    client_secret => ENV
+    grant_type
+    :code
+    :redirect_uri => my_new_token_path(self)
+    }
+
+  ^^^^^^^^^ THIS GETS SENT TO SPOTIFY TO GET A NEW AUTH_TOKEN!
+
+  response = HTTParty.post(send_uri + token_opts)
+  
+  self.update( :access_token = response[:access_token],
+               :refresh_token = response[:response_token],
+               :expiration_time = Time.now + 1.hour)
+end
+
+def refresh_token!
+  token_opts = {
+    client_id
+    :client_secret
+    :grant_type => 'refresh_token'
+    :refresh_token
+  }
+
+  response = HTTParty.post(spotify_url + token_opts)
+
+  self.update(:access_token => response[access_token],
+              :refresh_token => response[refresh_token],
+              :expiration_time => Time.now + 1.hour)
+
+end
+
+
+
+
+private
+
+def build_auth_link
+  auth_opts = {
+    :client_id =. ENV["CLIENT_ID"]
+    :response_type => 'code',
+    :redirect_uri => 'my_new_token_path(current_user)'
+    :scope => 'playlist-modify-public'
+  }.to_query
+
+  "https://accounts.spotify.com/authorize?" + auth_opts
+
+
+end
+
+
