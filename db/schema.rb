@@ -11,13 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150301210210) do
+ActiveRecord::Schema.define(version: 20150302024012) do
 
   create_table "join_votes", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "song_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "playlists", force: :cascade do |t|
+    t.integer "week_id"
+    t.string  "spotify_id"
+    t.string  "track_name"
+    t.string  "album_name"
+    t.string  "artist_name"
   end
 
   create_table "songs", force: :cascade do |t|
